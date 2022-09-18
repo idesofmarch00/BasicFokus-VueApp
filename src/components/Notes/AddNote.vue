@@ -31,7 +31,7 @@
         </button>
         <button
           type="submit"
-          @click.prevent="$emit('Add', alert)"
+          @click.prevent="Add"
           class="p-2 bg-green-500 text-yellow-100 rounded-lg text-sm hover:bg-green-700"
         >
           Add Note
@@ -39,13 +39,19 @@
       </div>
     </div>
   </form>
+
+  <hr class="h-[2px] w-11/12 mx-auto rounded-lg bg-blue-900" />
+
+  <div class="bg-yellow-100">
+    <NoteCard v-for="item in notesData" :key="item.title" :notes-data="item" />
+  </div>
 </template>
 
 <script setup lang="ts">
 //imports
 import { ref, reactive } from "vue";
+import NoteCard from "./NoteCard.vue";
 // import { notesData } from "./notesData";
-
 
 //variables
 const cardInfo = reactive({
@@ -59,7 +65,7 @@ function Add() {
   if (cardInfo.title && cardInfo.description) {
     alert.value = !alert.value;
     console.log(cardInfo.title, " : ", cardInfo.description);
-    notesData.push({
+    notesData.unshift({
       title: cardInfo.title,
       description: cardInfo.description,
     });

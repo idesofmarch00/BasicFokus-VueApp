@@ -3,7 +3,7 @@ import NavBar from "@/components/common/NavBar.vue";
 </script>
 
 <template>
-  <main class="flex flex-col h-screen items-center text-black bg-blue-100">
+  <main class="flex flex-col items-center text-black bg-blue-100">
     <NavBar class="" />
 
     <RouterView class="mt-4 h-screen w-full" />

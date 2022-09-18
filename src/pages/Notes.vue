@@ -14,12 +14,6 @@
     </div>
 
     <AddNote />
-
-    <hr class="h-[2px] w-11/12 mx-auto rounded-lg bg-blue-900" />
-
-    <div class="bg-yellow-100">
-      <!-- <NoteCard v-for="item in notesData" :key="item.title" :note-data="item" /> -->
-    </div>
   </div>
 </template>
 
