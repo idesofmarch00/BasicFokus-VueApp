@@ -8,6 +8,7 @@
           type="text"
           placeholder="Note To Self"
           class="rounded-md p-2 hover:bg-blue-50"
+          ref="addtitleelm"
         />
       </div>
       <div class="flex flex-col space-y-2">
@@ -43,13 +44,13 @@
   <hr class="h-[2px] w-11/12 mx-auto rounded-lg bg-blue-900" />
 
   <div class="bg-yellow-100">
-    <NoteCard v-for="item in notesData" :key="item.title" :notes-data="item" />
+    <NoteCard v-for="item in notesData" :key="item.id" :notes-data="item" />
   </div>
 </template>
 
 <script setup lang="ts">
 //imports
-import { ref, reactive } from "vue";
+import { ref, reactive, onMounted } from "vue";
 import NoteCard from "./NoteCard.vue";
 // import { notesData } from "./notesData";
 
@@ -63,28 +64,39 @@ const alert = ref<boolean>(false) as any;
 //functions
 function Add() {
   if (cardInfo.title && cardInfo.description) {
-    alert.value = !alert.value;
-    console.log(cardInfo.title, " : ", cardInfo.description);
+    let id = new Date().getTime().toString;
+    // alert.value = false;
     notesData.unshift({
+      id,
       title: cardInfo.title,
       description: cardInfo.description,
     });
+  }
 
-    // localStorage.set()
+  // localStorage.set()
 
-    // notesData.push({
-    //   title: cardInfo.title,
-    //   description: cardInfo.description,
-    // });
-  } else if (cardInfo.title) {
+  // notesData.push({
+  //   title: cardInfo.title,
+  //   description: cardInfo.description,
+  // });
+  else if (cardInfo.title) {
+    // alert.value = true;
+    emit("ShowAlert");
     console.log("Please write Description");
   } else if (cardInfo.description) {
+    // alert.value = true;
+    emit("ShowAlert");
     console.log("Please write Title");
   } else {
+    // alert.value = true;
     console.log("Please Write Title and Description");
-    alert.value = !alert.value;
+    emit("ShowAlert");
   }
 }
+const addtitleelm = ref<HTMLDivElement | null>();
+onMounted(() => {
+  addtitleelm.value.focus();
+});
 
 function Reset() {
   cardInfo.title = "";

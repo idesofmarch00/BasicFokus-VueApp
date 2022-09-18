@@ -6,14 +6,13 @@
       <span class="text-2xl">My Notes</span>
       <div
         class="bg-red-900 text-white text-lg font-bold px-2 w-1/3 text-center shadow-md rounded-sm"
-        ref="alertWarning"
-        v-show="true"
+        v-show="alertWarning"
       >
-        Please Write Something !!
+        Please Complete Note !!
       </div>
     </div>
 
-    <AddNote />
+    <AddNote @ShowAlert="alertWarning = true" />
   </div>
 </template>
 
@@ -29,7 +28,15 @@ import AddNote from "../components/Notes/AddNote.vue";
 import { ref, reactive, onMounted } from "vue";
 
 // refs reactive
-const alertWarning = ref<HTMLDivElement | null>();
+const alertWarning = ref<boolean>(false);
+
+setInterval(() => {
+  if ((alertWarning.value = true)) {
+    alertWarning.value = false;
+  }
+}, 5000);
+
+
 
 //hooks
 </script>
