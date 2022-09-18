@@ -44,7 +44,12 @@
   <hr class="h-[2px] w-11/12 mx-auto rounded-lg bg-blue-900" />
 
   <div class="bg-yellow-100">
-    <NoteCard v-for="item in notesData" :key="item.id" :notes-data="item" />
+    <NoteCard
+      v-for="item in notesData"
+      :key="item.id"
+      :notes-data="item"
+      @delete="deleteCard"
+    />
   </div>
 </template>
 
@@ -59,12 +64,15 @@ const cardInfo = reactive({
   title: "",
   description: "",
 }) as any;
-const alert = ref<boolean>(false) as any;
+// const alert = ref<boolean>(false) as any;
 
 //functions
+
 function Add() {
   if (cardInfo.title && cardInfo.description) {
-    let id = new Date().getTime().toString;
+    let cd = new Date().getTime();
+    let id = cd.toString();
+    console.log(id);
     // alert.value = false;
     notesData.unshift({
       id,
@@ -72,7 +80,6 @@ function Add() {
       description: cardInfo.description,
     });
   }
-
   // localStorage.set()
 
   // notesData.push({
@@ -93,6 +100,11 @@ function Add() {
     emit("ShowAlert");
   }
 }
+
+function deleteCard(idofelem: any) {
+  console.log(idofelem, " to delete");
+}
+
 const addtitleelm = ref<HTMLDivElement | null>();
 onMounted(() => {
   addtitleelm.value.focus();

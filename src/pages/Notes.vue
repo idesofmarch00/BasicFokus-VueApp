@@ -30,13 +30,11 @@ import { ref, reactive, onMounted } from "vue";
 // refs reactive
 const alertWarning = ref<boolean>(false);
 
-setInterval(() => {
-  if ((alertWarning.value = true)) {
-    alertWarning.value = false;
-  }
-}, 5000);
-
-
+// setInterval(() => {
+//   if ((alertWarning.value = true)) {
+//     alertWarning.value = false;
+//   }
+// }, 5000);
 
 //hooks
 </script>
