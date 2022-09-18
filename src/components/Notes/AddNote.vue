@@ -31,7 +31,7 @@
         </button>
         <button
           type="submit"
-          @click.prevent="Add"
+          @click.prevent="$emit('Add', alert)"
           class="p-2 bg-green-500 text-yellow-100 rounded-lg text-sm hover:bg-green-700"
         >
           Add Note
@@ -44,14 +44,14 @@
 <script setup lang="ts">
 //imports
 import { ref, reactive } from "vue";
-import { notesData } from "./notesData";
+// import { notesData } from "./notesData";
+
 
 //variables
 const cardInfo = reactive({
   title: "",
   description: "",
 }) as any;
-
 const alert = ref<boolean>(false) as any;
 
 //functions
@@ -59,14 +59,23 @@ function Add() {
   if (cardInfo.title && cardInfo.description) {
     alert.value = !alert.value;
     console.log(cardInfo.title, " : ", cardInfo.description);
+    notesData.push({
+      title: cardInfo.title,
+      description: cardInfo.description,
+    });
 
-    localStorage.set()
+    // localStorage.set()
+
     // notesData.push({
     //   title: cardInfo.title,
     //   description: cardInfo.description,
     // });
+  } else if (cardInfo.title) {
+    console.log("Please write Description");
+  } else if (cardInfo.description) {
+    console.log("Please write Title");
   } else {
-    console.log("Please Write Something");
+    console.log("Please Write Title and Description");
     alert.value = !alert.value;
   }
 }
@@ -78,10 +87,14 @@ function Reset() {
 
 //props
 // type Props = {
-
+//   alert: boolean;
 // };
-
 // defineProps<Props>();
+
+const notesData = reactive([]) as any;
+
+//emits
+const emit = defineEmits(["ShowAlert"]);
 </script>
 
 <style scoped></style>

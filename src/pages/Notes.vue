@@ -2,32 +2,42 @@
   <div
     class="flex flex-col mb-4 space-y-4 bg-blue-200 border border-blue-900 rounded-sm px-4 py-2"
   >
-    <p class="text-2xl">My Notes</p>
+    <div class="flex space-x-80">
+      <span class="text-2xl">My Notes</span>
+      <div
+        class="bg-red-900 text-white text-lg font-bold px-2 w-1/3 text-center shadow-md rounded-sm"
+        ref="alertWarning"
+        v-show="true"
+      >
+        Please Write Something !!
+      </div>
+    </div>
 
     <AddNote />
 
     <hr class="h-[2px] w-11/12 mx-auto rounded-lg bg-blue-900" />
 
     <div class="bg-yellow-100">
-      <NoteCard v-for="(item, index) in " :key="index" />
+      <!-- <NoteCard v-for="item in notesData" :key="item.title" :note-data="item" /> -->
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
 // imports
-import NoteCard from "@/components/Notes/NoteCard.vue";
+// import NoteCard from "@/components/Notes/NoteCard.vue";
 import AddNote from "../components/Notes/AddNote.vue";
+// import { notesData } from "@/components/Notes/notesData";
 
 //data import
 
-
 //dependencies import
-import { ref, reactive } from "vue";
+import { ref, reactive, onMounted } from "vue";
 
 // refs reactive
+const alertWarning = ref<HTMLDivElement | null>();
 
-//props
+//hooks
 </script>
 
 <style scoped></style>
