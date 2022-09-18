@@ -3,11 +3,11 @@ import NavBar from "@/components/common/NavBar.vue";
 </script>
 
 <template>
-  <div class="">
-    <NavBar />
+  <main class="flex flex-col h-screen items-center text-black bg-blue-100">
+    <NavBar class="" />
 
-    <RouterView />
-  </div>
+    <RouterView class="mt-4 w-full" />
+  </main>
 </template>
 
 <style scoped></style>
