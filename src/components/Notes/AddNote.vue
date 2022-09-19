@@ -48,6 +48,7 @@
       v-for="item in notesData"
       :key="item.id"
       :notes-data="item"
+      :data="item"
       @delete="deleteCard"
     />
   </div>
@@ -72,7 +73,7 @@ function Add() {
   if (cardInfo.title && cardInfo.description) {
     let cd = new Date().getTime();
     let id = cd.toString();
-    console.log(id);
+    // console.log(id);
     // alert.value = false;
     notesData.unshift({
       id,

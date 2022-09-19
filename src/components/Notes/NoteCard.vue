@@ -1,4 +1,6 @@
 <script setup lang="ts">
+// import { notesData } from "./notesData";
+
 // props
 type Props = {
   notesData: {
@@ -10,8 +12,8 @@ type Props = {
 defineProps<Props>();
 
 function handleDelete() {
-  console.log(notesData);
-  // emit("delete", notesData.id);
+  // console.log(notesData);
+  emit("delete", notesData.id);
 }
 const emit = defineEmits(["delete"]);
 </script>
