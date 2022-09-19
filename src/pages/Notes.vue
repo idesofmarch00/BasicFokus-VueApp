@@ -12,7 +12,7 @@
       </div>
     </div>
 
-    <AddNote @ShowAlert="alertWarning = true" />
+    <AddNote @ShowAlert="alertWarning = true"/>
   </div>
 </template>
 

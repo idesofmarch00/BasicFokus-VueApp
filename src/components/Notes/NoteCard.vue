@@ -8,13 +8,14 @@ type Props = {
     title: string;
     description: string;
   };
+  deleteCard: any;
 };
 defineProps<Props>();
 
-function handleDelete() {
-  // console.log(notesData);
-  emit("delete", notesData.id);
-}
+// function handleDelete() {
+// console.log(notesData);
+//   emit("delete", notesData.id);
+// }
 const emit = defineEmits(["delete"]);
 </script>
 
@@ -32,7 +33,7 @@ const emit = defineEmits(["delete"]);
       <button class="w-1/2 px-10 py-2 text-blue-800">Edit</button>
       <button
         class="border-orange-300 border-l-2 w-1/2 px-10 py-2 text-red-800"
-        @click.prevent="handleDelete"
+        @click.prevent="deleteCard(notesData.id)"
       >
         Delete
       </button>

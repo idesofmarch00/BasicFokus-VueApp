@@ -48,8 +48,7 @@
       v-for="item in notesData"
       :key="item.id"
       :notes-data="item"
-      :data="item"
-      @delete="deleteCard"
+      :delete-card="deleteCard"
     />
   </div>
 </template>
@@ -102,8 +101,9 @@ function Add() {
   }
 }
 
-function deleteCard(idofelem: any) {
-  console.log(idofelem, " to delete");
+function deleteCard(id: any) {
+  console.log(id, " to delete");
+  notesData.shift();
 }
 
 const addtitleelm = ref<HTMLDivElement | null>();
