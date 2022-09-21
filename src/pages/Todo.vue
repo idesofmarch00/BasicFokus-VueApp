@@ -7,6 +7,7 @@
       class="bg-teal-100 flex flex-col justify-center items-center w-full py-4"
     >
       <div class="w-1/2 flex flex-col space-y-4 items-center">
+        <!-- INPUT -->
         <div class="flex w-full items-center justify-center rounded-sm">
           <input
             v-model.lazy="inputtask"
@@ -20,6 +21,7 @@
             +
           </button>
         </div>
+        <!-- TASK CARD -->
         <div
           v-for="(task, index) in tasks"
           :key="index"
@@ -63,6 +65,8 @@ function addTask() {
     tasks.unshift(inputtask.value);
     console.log(tasks);
     inputtask.value = "";
+  } else {
+    console.log("Add a Task First");
   }
 }
 
@@ -72,7 +76,6 @@ function taskDone(index: any) {
 
 function taskDelete(index: any) {
   console.log("to delete : ", index);
-  console.log(tasks);
 }
 
 function taskEdit(index: any) {
