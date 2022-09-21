@@ -3,8 +3,8 @@ import NavBar from "@/components/common/NavBar.vue";
 </script>
 
 <template>
-  <div class="">
-    <NavBar />
+  <div class="flex flex-col">
+    <NavBar class="" />
 
     <RouterView />
   </div>
