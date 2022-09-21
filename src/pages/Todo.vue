@@ -7,14 +7,14 @@
       class="bg-teal-100 flex flex-col justify-center items-center w-full py-4"
     >
       <div class="w-1/2 flex flex-col space-y-4 items-center">
-        <div class="flex w-full items-center justify-center">
+        <div class="flex w-full items-center justify-center rounded-sm">
           <input
             v-model.lazy="inputtask"
             type="text"
             placeholder="Do"
-            class="w-1/2"
+            class="w-1/2 border hover:bg-blue-300 rounded-l-sm"
           /><button
-            class="bg-purple-500 w-1/12 hover:bg-blue-600 active:bg-red-600"
+            class="bg-purple-500 w-1/12 hover:bg-blue-600 active:bg-red-600 border rounded-r-md"
             @click.prevent="addTask"
           >
             +
@@ -25,12 +25,26 @@
           :key="index"
           class="flex w-96 justify-center items-center"
         >
-          <button class="rounded-lg p-2" @click.prevent="taskDone">Done</button>
+          <button
+            class="rounded-lg p-2 active:bg-orange-600"
+            @click.prevent="taskDone(index)"
+          >
+            Done
+          </button>
           <div class="flex bg-pink-200 rounded-md h-1/3 w-2/3">
             <span class="p-2 text-center">{{ task }}</span>
           </div>
-          <button class="rounded-lg p-2">Delete</button
-          ><button class="rounded-lg p-2">Edit</button>
+          <button
+            @click.prevent="taskDelete(index)"
+            class="rounded-lg p-2 active:bg-orange-600"
+          >
+            Delete</button
+          ><button
+            @click.prevent="taskEdit(index)"
+            class="rounded-lg p-2 active:bg-orange-600"
+          >
+            Edit
+          </button>
         </div>
       </div>
     </form>
@@ -52,7 +66,18 @@ function addTask() {
   }
 }
 
-function taskDone() {}
+function taskDone(index: any) {
+  console.log("to done : ", index);
+}
+
+function taskDelete(index: any) {
+  console.log("to delete : ", index);
+  console.log(tasks);
+}
+
+function taskEdit(index: any) {
+  console.log("to edit : ", index);
+}
 </script>
 
 <style scoped></style>
