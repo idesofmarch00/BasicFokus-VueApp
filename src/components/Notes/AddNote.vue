@@ -19,6 +19,7 @@
           cols=""
           class="h-40 rounded-md p-2 hover:bg-blue-50"
           placeholder="Write Something ..."
+          ref="adddescelm"
         ></textarea>
       </div>
 
@@ -66,27 +67,22 @@ const cardInfo = reactive({
 }) as any;
 // const alert = ref<boolean>(false) as any;
 
+let notesData = reactive([]) as any;
 //functions
-
 function Add() {
   if (cardInfo.title && cardInfo.description) {
     let cd = new Date().getTime();
     let id = cd.toString();
-    // console.log(id);
+    console.log(notesData);
     // alert.value = false;
     notesData.unshift({
       id,
       title: cardInfo.title,
       description: cardInfo.description,
     });
-  }
-  // localStorage.set()
-
-  // notesData.push({
-  //   title: cardInfo.title,
-  //   description: cardInfo.description,
-  // });
-  else if (cardInfo.title) {
+    cardInfo.title = "";
+    cardInfo.description = "";
+  } else if (cardInfo.title) {
     // alert.value = true;
     emit("ShowAlert");
     console.log("Please write Description");
@@ -102,11 +98,12 @@ function Add() {
 }
 
 function deleteCard(id: any) {
-  console.log(id, " to delete");
-  notesData.shift();
+  console.log(id, "to delete");
 }
 
 const addtitleelm = ref<HTMLDivElement | null>();
+const adddescelm = ref<HTMLDivElement | null>();
+
 onMounted(() => {
   addtitleelm.value.focus();
 });
@@ -116,16 +113,21 @@ function Reset() {
   cardInfo.description = "";
 }
 
+const emit = defineEmits(["ShowAlert"]);
+// localStorage.set()
+
+// notesData.push({
+//   title: cardInfo.title,
+//   description: cardInfo.description,
+// });
+
 //props
 // type Props = {
 //   alert: boolean;
 // };
 // defineProps<Props>();
 
-const notesData = reactive([]) as any;
-
 //emits
-const emit = defineEmits(["ShowAlert"]);
 </script>
 
 <style scoped></style>

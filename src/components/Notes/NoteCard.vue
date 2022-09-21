@@ -16,7 +16,7 @@ defineProps<Props>();
 // console.log(notesData);
 //   emit("delete", notesData.id);
 // }
-const emit = defineEmits(["delete"]);
+// const emit = defineEmits(["delete"]);
 </script>
 
 <template>
@@ -33,7 +33,7 @@ const emit = defineEmits(["delete"]);
       <button class="w-1/2 px-10 py-2 text-blue-800">Edit</button>
       <button
         class="border-orange-300 border-l-2 w-1/2 px-10 py-2 text-red-800"
-        @click.prevent="deleteCard(notesData.id)"
+        @click="deleteCard(notesData.id)"
       >
         Delete
       </button>
