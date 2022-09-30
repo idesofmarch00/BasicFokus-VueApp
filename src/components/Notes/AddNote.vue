@@ -61,32 +61,32 @@ import NoteCard from "./NoteCard.vue";
 // import { notesData } from "./notesData";
 
 //variables
-const cardInfo = reactive({
+const cardInfo = ref({
   title: "",
   description: "",
 }) as any;
 // const alert = ref<boolean>(false) as any;
 
-let notesData = reactive([]) as any;
+let notesData = ref([]) as any;
 //functions
 function Add() {
-  if (cardInfo.title && cardInfo.description) {
+  if (cardInfo.value.title && cardInfo.value.description) {
     let cd = new Date().getTime();
     let id = cd.toString();
-    console.log(notesData);
+    console.log(notesData.value);
     // alert.value = false;
-    notesData.unshift({
+    notesData.value.unshift({
       id,
-      title: cardInfo.title,
-      description: cardInfo.description,
+      title: cardInfo.value.title,
+      description: cardInfo.value.description,
     });
-    cardInfo.title = "";
-    cardInfo.description = "";
+    cardInfo.value.title = "";
+    cardInfo.value.description = "";
   } else if (cardInfo.title) {
     // alert.value = true;
     emit("ShowAlert");
     console.log("Please write Description");
-  } else if (cardInfo.description) {
+  } else if (cardInfo.value.description) {
     // alert.value = true;
     emit("ShowAlert");
     console.log("Please write Title");
@@ -97,8 +97,10 @@ function Add() {
   }
 }
 
-function deleteCard(id: any) {
+function deleteCard(note: any, id: any) {
   console.log(id, "to delete");
+  console.log(note, "to delete");
+  notesData.value.splice(id, 1);
 }
 
 const addtitleelm = ref<HTMLDivElement | null>();
@@ -109,8 +111,8 @@ onMounted(() => {
 });
 
 function Reset() {
-  cardInfo.title = "";
-  cardInfo.description = "";
+  cardInfo.value.title = "";
+  cardInfo.value.description = "";
 }
 
 const emit = defineEmits(["ShowAlert"]);
