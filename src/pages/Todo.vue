@@ -15,7 +15,7 @@
             placeholder="Do"
             class="w-1/2 border hover:bg-blue-300 rounded-l-sm"
           /><button
-            class="bg-purple-500 w-1/12 hover:bg-blue-600 active:bg-red-600 border rounded-r-md"
+            class="text-white bg-purple-500 w-1/12 hover:bg-blue-600 active:bg-red-600 border rounded-r-md"
             @click.prevent="addTask"
           >
             +
@@ -33,15 +33,16 @@
           >
             Done
           </button>
-          <div class="flex bg-pink-200 rounded-md h-1/3 w-2/3">
+          <div class="flex bg-pink-200 rounded-md w-2/3">
             <span class="p-2 text-center">{{ task }}</span>
           </div>
           <button
-            @click.prevent="taskDelete(index)"
+            @click.prevent="taskDelete(task, index)"
             class="rounded-lg p-2 active:bg-orange-600"
           >
-            Delete</button
-          ><button
+            Delete
+          </button>
+          <button
             @click.prevent="taskEdit(index)"
             class="rounded-lg p-2 active:bg-orange-600"
           >
@@ -54,15 +55,15 @@
 </template>
 
 <script setup lang="ts">
-import { ref, reactive } from "vue";
+import { ref } from "vue";
 
 const inputtask = ref<string>("");
 
-let tasks = [] as any;
+let tasks = ref([]) as any;
 
 function addTask() {
   if (inputtask.value.length > 0) {
-    tasks.unshift(inputtask.value);
+    tasks.value.unshift(inputtask.value);
     console.log(tasks);
     inputtask.value = "";
   } else {
@@ -74,8 +75,11 @@ function taskDone(index: any) {
   console.log("to done : ", index);
 }
 
-function taskDelete(index: any) {
+function taskDelete(task: any, index: any) {
   console.log("to delete : ", index);
+  // tasks = tasks.filter((t: any) => t !== task);
+  console.log(task);
+  tasks.value.splice(index, 1);
 }
 
 function taskEdit(index: any) {

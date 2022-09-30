@@ -1,10 +1,10 @@
-import { createRouter, createWebHashHistory } from "vue-router";
+import { createRouter, createWebHistory } from "vue-router";
 import Notes from "@/pages/Notes.vue";
 import Pomodoro from "@/pages/Pomodoro.vue";
 import Todo from "@/pages/Todo.vue";
 
 const router = createRouter({
-  history: createWebHashHistory(),
+  history: createWebHistory(),
   routes: [
     {
       path: "/",

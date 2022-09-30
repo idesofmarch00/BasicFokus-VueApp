@@ -27,4 +27,8 @@
   </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+.router-link-active {
+  text-decoration: underline;
+}
+</style>
